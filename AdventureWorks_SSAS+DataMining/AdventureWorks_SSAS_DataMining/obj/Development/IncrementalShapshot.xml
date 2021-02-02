@@ -1,0 +1,152 @@
+﻿<DeploymentSnapshot xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0">
+  <Target>
+    <Database>AdventureWorks_SSAS_DataMining</Database>
+    <Server>老卢的DELL\ECE9017</Server>
+    <ConnectionString>Data Source=老卢的DELL\ECE9017;Timeout=0</ConnectionString>
+  </Target>
+  <Options>
+    <TransactionalDeployment>false</TransactionalDeployment>
+    <PartitionDeployment>DeployPartitions</PartitionDeployment>
+    <RoleDeployment>DeployRolesRetainMembers</RoleDeployment>
+    <ProcessingOption>DoNotProcess</ProcessingOption>
+    <OutputScript></OutputScript>
+    <ImpactAnalysisFile></ImpactAnalysisFile>
+    <ConfigurationSettingsDeployment>Deploy</ConfigurationSettingsDeployment>
+    <OptimizationSettingsDeployment>Deploy</OptimizationSettingsDeployment>
+    <WriteBackTableCreation>UseExisting</WriteBackTableCreation>
+  </Options>
+  <Snapshot>
+    <ObjectSnapshots>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.RelationalDataSource</Type>
+        <TimeStamp>3ti2n6Uka7+pc8RB6Cw6EBD6lZc=2020/4/21 13:44:122020/4/21 13:44:12</TimeStamp>
+        <ID>
+          <String>ds_AW2021 DW</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.DataSourceView</Type>
+        <TimeStamp>H06bsE17hfx3StWrTgYQcAVKgnY=2020/4/21 13:45:182020/4/21 13:45:18</TimeStamp>
+        <ID>
+          <String>dsv_AW2021 DW</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.DataSourceView</Type>
+        <TimeStamp>ly3EBgBkHUgSxqi3RZBY6g6C4dM=2020/4/21 14:11:012020/4/21 14:11:01</TimeStamp>
+        <ID>
+          <String>dsv_AW2021 DW_ResellerLocation</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.DataSourceView</Type>
+        <TimeStamp>daD6IlKy7mVEda5b4Ice0uK5a00=2020/4/21 14:29:512020/4/21 14:29:51</TimeStamp>
+        <ID>
+          <String>dsv_AW2021 DW_ResellerPredictMeasures</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.DataSourceView</Type>
+        <TimeStamp>l/1uWvYo7kKXDfXd2+/N5llkub8=2020/4/21 14:35:432020/4/21 14:35:43</TimeStamp>
+        <ID>
+          <String>dsv_AW2021 DW_ProductsPredictMeasures</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>qF9ve/0JPgFIXyGJBPZVHbt6Z+E=2020/4/21 13:52:562020/4/21 13:46:09</TimeStamp>
+        <ID>
+          <String>Dim Products</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>m+e9Nu0qL0JJPPPzrR9bHADl860=2020/4/21 13:46:592020/4/21 13:46:09</TimeStamp>
+        <ID>
+          <String>Dim Date</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>BhJj6kBG7nFTHMxZQt5Hk8hrU9w=2020/4/21 13:53:552020/4/21 13:46:09</TimeStamp>
+        <ID>
+          <String>Dim Location</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>d2nljqDIl9lg1AY9jnsWyZL6zb8=2020/4/21 13:46:092020/4/21 13:46:09</TimeStamp>
+        <ID>
+          <String>Dim Sales Person</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>TA9EUpLkLuh6mAy1QiPZObMWUnA=2020/4/21 13:55:382020/4/21 13:46:09</TimeStamp>
+        <ID>
+          <String>Dim Reseller</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>wLr2fbZv2qMOBa5FUXZrxS13y4I=2020/4/21 13:57:052020/4/21 13:46:09</TimeStamp>
+        <ID>
+          <String>Dim Promotion</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Cube</Type>
+        <TimeStamp>/67yfTqCbA09HAlv7LnEpmm8uKU=2020/4/21 14:04:012020/4/21 13:46:093JOnjmk0k+oua/+QR6dFjxbzHfI=2020/4/21 14:04:012020/4/21 13:46:09</TimeStamp>
+        <ID>
+          <String>cube_AW2021 DW</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.MiningStructure</Type>
+        <TimeStamp>9mrSJJbP/Yz9XMT9ahQlBjIeZ6k=2020/4/21 14:27:072020/4/21 14:23:50</TimeStamp>
+        <ID>
+          <String>Predict Reseller Location</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.MiningStructure</Type>
+        <TimeStamp>gAQHYa5+l8V7pO3qFc+ptiOoBWo=2020/4/21 14:33:242020/4/21 14:31:29</TimeStamp>
+        <ID>
+          <String>Reseller Predict Sales Amount</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.MiningStructure</Type>
+        <TimeStamp>8sdqmIvFKeTxGU0BOUiIY0qIrUA=2020/4/21 14:37:092020/4/21 14:37:09</TimeStamp>
+        <ID>
+          <String>Products Predict Sales Amount</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.MiningStructure</Type>
+        <TimeStamp>zQpC55NgMhciTm0Xr0lbTsSVOOo=2020/4/21 14:47:262020/4/21 14:43:57</TimeStamp>
+        <ID>
+          <String>Products Predict Unit Price</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.MiningStructure</Type>
+        <TimeStamp>qYGj3RsSRE2MffhRIi/K+Qw/qyw=2020/4/21 14:49:122020/4/21 14:49:12</TimeStamp>
+        <ID>
+          <String>Reseller Predict Freight</String>
+        </ID>
+      </ObjectSnapshot>
+    </ObjectSnapshots>
+    <DatabaseSnapshot>
+      <Type>Microsoft.AnalysisServices.Database</Type>
+      <TimeStamp>J66oKWYWkSQK+Bj1usVzNecn5FE=2020/4/21 13:43:042020/4/21 13:43:04</TimeStamp>
+      <ID>
+        <String>AdventureWorks_SSAS_DataMining</String>
+      </ID>
+    </DatabaseSnapshot>
+    <Granularity>Coarse</Granularity>
+  </Snapshot>
+  <AssemblyLocations />
+  <ProcessingComplete>true</ProcessingComplete>
+  <LastDeployed>2020-04-21T18:49:16.023333Z</LastDeployed>
+</DeploymentSnapshot>

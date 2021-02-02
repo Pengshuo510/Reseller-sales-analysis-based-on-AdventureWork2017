@@ -1,0 +1,947 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/21/2020 6:55:21 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-MF45MNL"
+  DTS:CreatorName="DESKTOP-MF45MNL\alienware"
+  DTS:DTSID="{8FA964F5-1991-4EAB-BE18-B66B4C92790E}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.93"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="1"
+  DTS:VersionGUID="{B9DFB60B-7A3F-42F0-AE34-D30A79A6E234}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DESKTOP-MF45MNL\ECE9017.AW2021_DW2]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{C1CD6D1C-2EC3-4D2C-8041-DE3ADCD5181D}"
+      DTS:ObjectName="DESKTOP-MF45MNL\ECE9017.AW2021_DW2">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DESKTOP-MF45MNL\ECE9017;Initial Catalog=AW2021_DW2;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7146C539-3164-497F-903C-910BAB787006}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="StartDate"
+      DTS:ObjectName="User">
+      <DTS:VariableValue
+        DTS:DataType="7">5/31/2011</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\create dim tables"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="执行 SQL 任务"
+      DTS:DTSID="{09eb7e44-e1f5-4214-bfa4-5873fdf993e2}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="create dim tables"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C1CD6D1C-2EC3-4D2C-8041-DE3ADCD5181D}"
+          SQLTask:SqlStatementSource="CREATE TABLE dbo.DimReseller (&#xA; ResellerKey int NOT NULL,&#xA; ResellerID int  NOT NULL,&#xA; ResellerName nvarchar(50) NOT NULL,&#xA; SalesRegion nvarchar(30) NULL,&#xA; SalesCountry nvarchar(50) NULL,&#xA; SalesGroup nvarchar(50) NULL,&#xA; StartDate DATE NOT NULL,&#xA; EndDate DATE NULL,&#xA; CONSTRAINT PK_DimReseller_ResellerKey PRIMARY KEY (ResellerKey)&#xA;) &#xA;&#xA;&#xA;CREATE TABLE dbo.DimLocation (&#xA; LocationKey int NOT NULL,&#xA; TerritoryID int NOT NULL,&#xA; SalesRegion nvarchar(30) NULL,&#xA; SalesCountry nvarchar(50) NULL,&#xA; SalesGroup nvarchar(50) NULL,&#xA; CONSTRAINT PK_DimLocation_LocationKey PRIMARY KEY (LocationKey)&#xA;) " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\create preload tables"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="执行 SQL 任务"
+      DTS:DTSID="{82c05eda-3be2-4ee8-9c7a-57fba8afdab7}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="create preload tables"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C1CD6D1C-2EC3-4D2C-8041-DE3ADCD5181D}"
+          SQLTask:SqlStatementSource="CREATE TABLE dbo.Location_Preload(&#xA; LocationKey int NOT NULL,&#xA; TerritoryID int NOT NULL,&#xA; SalesRegion nvarchar(30) NULL,&#xA; SalesCountry nvarchar(50) NULL,&#xA; SalesGroup nvarchar(50) NULL&#xA; &#xA;    CONSTRAINT PK_Location_Preload PRIMARY KEY CLUSTERED (LocationKey)&#xA;);&#xA;&#xA;CREATE TABLE dbo.Reseller_Preload (&#xA; ResellerKey int NOT NULL,&#xA; ResellerID int  NOT NULL,&#xA; ResellerName nvarchar(50) NOT NULL,&#xA; SalesRegion nvarchar(30) NULL,&#xA; SalesCountry nvarchar(50) NULL,&#xA; SalesGroup nvarchar(50) NULL,&#xA; StartDate DATE NOT NULL,&#xA; EndDate DATE NULL,&#xA;&#xA; CONSTRAINT PK_Reseller_Preload PRIMARY KEY (ResellerKey)&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\create stage tables"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="执行 SQL 任务"
+      DTS:DTSID="{1bd0a69c-d5ab-4c92-a4a9-e1424462d1cf}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="create stage tables"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C1CD6D1C-2EC3-4D2C-8041-DE3ADCD5181D}"
+          SQLTask:SqlStatementSource="CREATE TABLE dbo.Location_Stage(&#xA; TerritoryID int NOT NULL,&#xA; SalesRegion nvarchar(30) NULL,&#xA; SalesCountry nvarchar(50) NULL,&#xA; SalesGroup nvarchar(50) NULL&#xA;);&#xA;&#xA;CREATE TABLE dbo.Reseller_Stage(&#xA; ResellerID int  NOT NULL,&#xA; ResellerName nvarchar(50) NOT NULL,&#xA; SalesRegion nvarchar(30) NULL,&#xA; SalesCountry nvarchar(50) NULL,&#xA; SalesGroup nvarchar(50) NULL,&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\execute extract"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="执行 SQL 任务"
+      DTS:DTSID="{616e47ce-5e51-43fd-89d8-9ed69ddef4bb}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="execute extract"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C1CD6D1C-2EC3-4D2C-8041-DE3ADCD5181D}"
+          SQLTask:SqlStatementSource="EXECUTE dbo.Location_Extract;&#xA;EXECUTE dbo.Reseller_Extract;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\execute load"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="执行 SQL 任务"
+      DTS:DTSID="{88e5d381-a9ff-4286-bb63-82bb0bc26258}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="execute load"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C1CD6D1C-2EC3-4D2C-8041-DE3ADCD5181D}"
+          SQLTask:SqlStatementSource="EXECUTE dbo.Location_Load;&#xA;EXECUTE dbo.Reseller_Load;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\execute Location transform"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="执行 SQL 任务"
+      DTS:DTSID="{e6143ec8-deb7-42e6-a939-3815f762444e}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="execute Location transform"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C1CD6D1C-2EC3-4D2C-8041-DE3ADCD5181D}"
+          SQLTask:SqlStatementSource="EXECUTE dbo.Location_Transform;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\execute Reseller transform"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="执行 SQL 任务"
+      DTS:DTSID="{199f1f60-3e39-4ec7-ba61-b704e21ed7b1}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="execute Reseller transform"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C1CD6D1C-2EC3-4D2C-8041-DE3ADCD5181D}"
+          SQLTask:SqlStatementSource="EXECUTE dbo.Reseller_Transform ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="@StartDate"
+            SQLTask:DtsVariableName="StartDate::User"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="7"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Location Extract procedure"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="执行 SQL 任务"
+      DTS:DTSID="{4ecbea03-bb2d-4e11-82d3-7a65fdd1047c}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Location Extract procedure"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C1CD6D1C-2EC3-4D2C-8041-DE3ADCD5181D}"
+          SQLTask:SqlStatementSource="CREATE PROCEDURE dbo.Location_Extract&#xA;AS&#xA;BEGIN;&#xA; SET NOCOUNT ON;&#xA; SET XACT_ABORT ON;&#xA; DECLARE @RowCt INT;&#xA; &#xA; TRUNCATE TABLE dbo.Location_Stage;&#xA; &#xA; INSERT INTO dbo.Location_Stage(&#xA;  TerritoryID,&#xA;  SalesRegion,&#xA;  SalesCountry,&#xA;  SalesGroup&#xA; )&#xA; SELECT &#xA;  st.TerritoryID,&#xA;  st.Name,&#xA;  cr.Name,&#xA;  st.[Group]&#xA; FROM AdventureWorks2021.dbo.SalesTerritory st&#xA; LEFT JOIN AdventureWorks2021.dbo.CountryRegion cr&#xA; ON st.CountryRegionCode = cr.CountryRegionCode;&#xA; &#xA; SET @RowCt = @@ROWCOUNT;&#xA;    IF @RowCt = 0 &#xA;    BEGIN;&#xA;        THROW 50001, 'No records found. Check with source system.', 1;&#xA;    END;&#xA;END; --END OF PROCEDURE Products_Extract&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Location Load procedure"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="执行 SQL 任务"
+      DTS:DTSID="{7229f993-eab6-4ccc-97a3-02cda7551447}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Location Load procedure"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C1CD6D1C-2EC3-4D2C-8041-DE3ADCD5181D}"
+          SQLTask:SqlStatementSource="CREATE PROCEDURE dbo.Location_Load&#xA;AS&#xA;BEGIN;&#xA;&#xA;    SET NOCOUNT ON;&#xA;    SET XACT_ABORT ON;&#xA;&#xA;    BEGIN TRANSACTION;&#xA;&#xA;    DELETE l&#xA;    FROM dbo.DimLocation l&#xA;    JOIN dbo.Location_Preload lp&#xA;        ON l.LocationKey = lp.LocationKey;&#xA;&#xA;    INSERT INTO dbo.DimLocation &#xA;    SELECT * &#xA;    FROM dbo.Location_Preload;&#xA;&#xA;    COMMIT TRANSACTION;&#xA;END;&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Location Transform procedure"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="执行 SQL 任务"
+      DTS:DTSID="{34cc97e9-8833-4e3a-923e-929f0330844b}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Location Transform procedure"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C1CD6D1C-2EC3-4D2C-8041-DE3ADCD5181D}"
+          SQLTask:SqlStatementSource="CREATE PROCEDURE dbo.Location_Transform    -- Type 1 SCD&#xA;AS&#xA;BEGIN;&#xA; SET NOCOUNT ON;&#xA; SET XACT_ABORT ON;&#xA; &#xA; TRUNCATE TABLE dbo.Location_Preload;&#xA; &#xA; BEGIN TRANSACTION&#xA; &#xA; /*CREATE NEW RECORD*/&#xA; INSERT INTO dbo.Location_Preload&#xA; SELECT &#xA;  NEXT VALUE FOR dbo.LocationKey AS LocationKey,&#xA;  l.TerritoryID,&#xA;  l.SalesRegion,&#xA;  l.SalesCountry,&#xA;  l.SalesGroup&#xA; FROM dbo.Location_Stage l&#xA; WHERE NOT EXISTS &#xA;  (SELECT 1&#xA;   FROM dbo.DimLocation lo&#xA;   WHERE l.TerritoryID = lo.TerritoryID );&#xA; &#xA; /*UPDATE EXISTING RECORDS*/&#xA; INSERT INTO dbo.Location_Preload&#xA; SELECT &#xA;  lo.LocationKey,&#xA;  l.TerritoryID,&#xA;  l.SalesRegion,&#xA;  l.SalesCountry,&#xA;  l.SalesGroup&#xA; FROM dbo.Location_Stage l&#xA; JOIN dbo.DimLocation lo&#xA;  ON l.TerritoryID = lo.TerritoryID;&#xA;&#xA; COMMIT TRANSACTION;&#xA;END; --END OF PROCEDURE SalesPeople_Transform&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Reseller Extract procedure"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="执行 SQL 任务"
+      DTS:DTSID="{dcec85ac-e019-4fde-8f69-5088765497ee}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Reseller Extract procedure"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C1CD6D1C-2EC3-4D2C-8041-DE3ADCD5181D}"
+          SQLTask:SqlStatementSource="CREATE PROCEDURE dbo.Reseller_Extract&#xA;AS&#xA;BEGIN;&#xA; SET NOCOUNT ON;&#xA; SET XACT_ABORT ON;&#xA; DECLARE @RowCt INT;&#xA; &#xA; TRUNCATE TABLE dbo.Reseller_Stage;&#xA; &#xA; INSERT INTO dbo.Reseller_Stage(&#xA;  ResellerID,&#xA;  ResellerName,&#xA;  SalesRegion,&#xA;  SalesCountry,&#xA;  SalesGroup&#xA; )&#xA; SELECT &#xA;  s.StoreID,&#xA;  s.Name,&#xA;  st.Name,&#xA;  cr.Name,&#xA;  st.[Group]&#xA; FROM AdventureWorks2021.dbo.Store s&#xA; LEFT JOIN AdventureWorks2021.dbo.Customer cust&#xA; ON s.StoreID = cust.StoreID&#xA; LEFT JOIN AdventureWorks2021.dbo.SalesOrder so&#xA; ON cust.CustomerID = so.CustomerID&#xA; LEFT JOIN AdventureWorks2021.dbo.SalesTerritory st&#xA; ON so.TerritoryID = st.TerritoryID&#xA; LEFT JOIN AdventureWorks2021.dbo.CountryRegion cr&#xA; ON st.CountryRegionCode = cr.CountryRegionCode;&#xA; &#xA; SET @RowCt = @@ROWCOUNT;&#xA;    IF @RowCt = 0 &#xA;    BEGIN;&#xA;        THROW 50001, 'No records found. Check with source system.', 1;&#xA;    END;&#xA;END; --END OF PROCEDURE Products_Extract&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Reseller Load procedure"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="执行 SQL 任务"
+      DTS:DTSID="{720bcd55-3e4a-4006-9523-2bd1bbb7e736}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Reseller Load procedure"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C1CD6D1C-2EC3-4D2C-8041-DE3ADCD5181D}"
+          SQLTask:SqlStatementSource="CREATE PROCEDURE dbo.Reseller_Load&#xA;AS&#xA;BEGIN;&#xA;&#xA;    SET NOCOUNT ON;&#xA;    SET XACT_ABORT ON;&#xA;&#xA;    BEGIN TRANSACTION;&#xA;&#xA;    DELETE r&#xA;    FROM dbo.DimReseller r&#xA;    JOIN dbo.Reseller_Preload rp&#xA;        ON r.ResellerKey = rp.ResellerKey;&#xA;&#xA;    INSERT INTO dbo.DimReseller &#xA;    SELECT * &#xA;    FROM dbo.Reseller_Preload;&#xA;&#xA;    COMMIT TRANSACTION;&#xA;END;&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Reseller Transform procedure"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="执行 SQL 任务"
+      DTS:DTSID="{6d167608-c50b-4134-a520-ac8cc0149db7}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Reseller Transform procedure"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C1CD6D1C-2EC3-4D2C-8041-DE3ADCD5181D}"
+          SQLTask:SqlStatementSource="CREATE PROCEDURE dbo.Reseller_Transform    -- Type 2 SCD&#xA; @StartDate DATE&#xA;AS&#xA;BEGIN;&#xA; SET NOCOUNT ON;&#xA; SET XACT_ABORT ON;&#xA; &#xA; TRUNCATE TABLE dbo.Reseller_Preload;&#xA;&#xA; DECLARE @EndDate DATE = DATEADD(dd,-1,@StartDate);&#xA;&#xA; BEGIN TRANSACTION&#xA;&#xA; /*ADD UPDATED RECORDS*/&#xA; INSERT INTO dbo.Reseller_Preload&#xA; SELECT &#xA;  NEXT VALUE FOR dbo.ResellerKey AS ResellerKey,&#xA;  r.ResellerID,&#xA;  r.ResellerName,&#xA;  r.SalesRegion,&#xA;  r.SalesCountry,&#xA;  r.SalesGroup,&#xA;  @StartDate,&#xA;  NULL&#xA; FROM dbo.Reseller_Stage r&#xA; JOIN dbo.DimReseller re&#xA;  ON r.ResellerID = re.ResellerID&#xA;  AND re.EndDate IS NULL&#xA; WHERE&#xA;  r.ResellerName &lt;&gt; re.ResellerName&#xA;  OR r.SalesRegion &lt;&gt; re.SalesRegion&#xA;  OR r.SalesCountry &lt;&gt; re.SalesCountry&#xA;  OR r.SalesGroup &lt;&gt; re.SalesGroup;&#xA;&#xA; /*ADD EXISTING RECORDS, AND EXPIRE AS NECESSARY*/&#xA; INSERT INTO dbo.Reseller_Preload&#xA; SELECT&#xA;  dr.ResellerKey,&#xA;  dr.ResellerID,&#xA;  dr.ResellerName,&#xA;  dr.SalesRegion,&#xA;  dr.SalesCountry,&#xA;  dr.SalesGroup,&#xA;  dr.StartDate,&#xA;  CASE&#xA;   WHEN rp.ResellerName IS NULL THEN NULL&#xA;   ELSE @EndDate&#xA;  END AS EndDate&#xA; FROM dbo.DimReseller dr&#xA; LEFT JOIN dbo.Reseller_Preload rp&#xA;  ON dr.ResellerID = rp.ResellerID&#xA;  AND dr.EndDate IS NULL;&#xA;&#xA; /*CREATE NEW RECORDS*/&#xA; INSERT INTO dbo.Reseller_Preload&#xA; SELECT&#xA;  NEXT VALUE FOR dbo.ResellerKey AS ResellerKey,&#xA;  r.ResellerID,&#xA;  r.ResellerName,&#xA;  r.SalesRegion,&#xA;  r.SalesCountry,&#xA;  r.SalesGroup,&#xA;  @StartDate,&#xA;  NULL&#xA; FROM dbo.Reseller_Stage r&#xA; WHERE NOT EXISTS&#xA;  (SELECT 1&#xA;   FROM dbo.DimReseller re&#xA;   WHERE r.ResellerID = re.ResellerID);&#xA;&#xA; /*EXPIRE MISSING RECORDS*/&#xA; INSERT INTO dbo.Reseller_Preload&#xA; SELECT&#xA;  dr.ResellerKey,&#xA;  dr.ResellerID,&#xA;  dr.ResellerName,&#xA;  dr.SalesRegion,&#xA;  dr.SalesCountry,&#xA;  dr.SalesGroup,&#xA;  dr.StartDate,&#xA;  @EndDate&#xA; FROM dbo.DimReseller dr&#xA; WHERE NOT EXISTS&#xA;  (SELECT 1&#xA;   FROM dbo.Reseller_Stage rs&#xA;   WHERE rs.ResellerID = dr.ResellerID)&#xA;  AND dr.EndDate IS NULL;&#xA;&#xA;    COMMIT TRANSACTION;&#xA;END; --END OF PROCEDURE Promotion_Transform&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{78083d5d-d1bc-41dc-80e4-d4ecd3163edc}"
+      DTS:From="Package\create dim tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\create stage tables" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{aa13b52b-0f99-4f3e-a7f1-93ae182d73a1}"
+      DTS:From="Package\create stage tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Reseller Extract procedure" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 10]"
+      DTS:CreationName=""
+      DTS:DTSID="{12fdf90f-e96c-4ca5-88b5-ada80cce6694}"
+      DTS:From="Package\Reseller Load procedure"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 10"
+      DTS:To="Package\execute extract" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 11]"
+      DTS:CreationName=""
+      DTS:DTSID="{11457f0b-b562-4453-8062-0ad25d3f958c}"
+      DTS:From="Package\execute extract"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 11"
+      DTS:To="Package\execute Location transform" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 12]"
+      DTS:CreationName=""
+      DTS:DTSID="{a923680d-c937-405d-8676-a8d76df299a8}"
+      DTS:From="Package\execute extract"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 12"
+      DTS:To="Package\execute Reseller transform" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 13]"
+      DTS:CreationName=""
+      DTS:DTSID="{78867165-9cc9-46fd-9250-c0af4e58f6da}"
+      DTS:From="Package\execute Location transform"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 13"
+      DTS:To="Package\execute load" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 14]"
+      DTS:CreationName=""
+      DTS:DTSID="{e4dcc6e4-ef82-4fbb-a30f-0e7aeb673c9e}"
+      DTS:From="Package\execute Reseller transform"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 14"
+      DTS:To="Package\execute load" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{90becc32-7fbb-4658-92b2-0f933939c346}"
+      DTS:From="Package\create stage tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Location Extract procedure" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{85d6056b-d350-488d-9696-4f1333336f53}"
+      DTS:From="Package\Reseller Extract procedure"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\create preload tables" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{894b57f7-20b8-497b-9956-e668bdbbd67b}"
+      DTS:From="Package\Location Extract procedure"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\create preload tables" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{70e33dbb-f12e-4a60-a9cd-7d4edb3a3b0f}"
+      DTS:From="Package\create preload tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Location Transform procedure" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{27f4a504-f877-48ec-8a29-03f134847e4d}"
+      DTS:From="Package\create preload tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\Reseller Transform procedure" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{7d81847d-9191-4ae2-a5ed-8ddeab588519}"
+      DTS:From="Package\Location Transform procedure"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 7"
+      DTS:To="Package\Location Load procedure" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 8]"
+      DTS:CreationName=""
+      DTS:DTSID="{58bc33df-6b74-4911-b9a8-11cea6798ae0}"
+      DTS:From="Package\Reseller Transform procedure"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 8"
+      DTS:To="Package\Reseller Load procedure" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 9]"
+      DTS:CreationName=""
+      DTS:DTSID="{887c7909-6c4f-4560-82af-849422a25e83}"
+      DTS:From="Package\Location Load procedure"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 9"
+      DTS:To="Package\execute extract" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="181,42"
+          Id="Package\create dim tables"
+          TopLeft="414.047602594845,147.642849599829" />
+        <NodeLayout
+          Size="193,42"
+          Id="Package\create stage tables"
+          TopLeft="405.833317206966,218.744886783574" />
+        <NodeLayout
+          Size="235,42"
+          Id="Package\Reseller Extract procedure"
+          TopLeft="289.166655176216,286.530597606137" />
+        <NodeLayout
+          Size="235,42"
+          Id="Package\Location Extract procedure"
+          TopLeft="537.499978641669,286.530597606137" />
+        <NodeLayout
+          Size="205,42"
+          Id="Package\create preload tables"
+          TopLeft="361.666652295325,361.744879477748" />
+        <NodeLayout
+          Size="247,42"
+          Id="Package\Location Transform procedure"
+          TopLeft="249.166656765673,442.387735055071" />
+        <NodeLayout
+          Size="247,42"
+          Id="Package\Reseller Transform procedure"
+          TopLeft="519.166646036838,443.959168655185" />
+        <NodeLayout
+          Size="217,42"
+          Id="Package\Location Load procedure"
+          TopLeft="260.833322968748,514.244874496503" />
+        <NodeLayout
+          Size="217,42"
+          Id="Package\Reseller Load procedure"
+          TopLeft="512.49997963508,521.45915703228" />
+        <NodeLayout
+          Size="169,42"
+          Id="Package\execute extract"
+          TopLeft="401.666650705868,596.459162345608" />
+        <NodeLayout
+          Size="235,42"
+          Id="Package\execute Location transform"
+          TopLeft="254.166656566991,679.887738043818" />
+        <NodeLayout
+          Size="235,42"
+          Id="Package\execute Reseller transform"
+          TopLeft="513.3333129353,680.459161681442" />
+        <NodeLayout
+          Size="151,42"
+          Id="Package\execute load"
+          TopLeft="412.499983608723,752.530591628643" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="503.440459900906,189.642849599829">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29.1020371837452"
+              Start="0,0"
+              End="0,21.6020371837452">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.6020371837452" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="471.499983873633,260.744886783574">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-64.8333286974166,25.785710822563"
+              Start="0,0"
+              End="-64.8333286974166,18.285710822563">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,6.44149030225058" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,6.44149030225058"
+                    Point2="0,10.4414903022506"
+                    Point3="-4,10.4414903022506" />
+                  <mssgle:LineSegment
+                    End="-60.8333286974166,10.4414903022506" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-60.8333286974166,10.4414903022506"
+                    Point2="-64.8333286974166,10.4414903022506"
+                    Point3="-64.8333286974166,14.4414903022506" />
+                  <mssgle:LineSegment
+                    End="-64.8333286974166,18.285710822563" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="533.166650540299,260.744886783574">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="121.83332810137,25.785710822563"
+              Start="0,0"
+              End="121.83332810137,18.285710822563">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,6.44149030225059" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,6.44149030225059"
+                    Point2="0,10.4414903022506"
+                    Point3="4,10.4414903022506" />
+                  <mssgle:LineSegment
+                    End="117.83332810137,10.4414903022506" />
+                  <mssgle:CubicBezierSegment
+                    Point1="117.83332810137,10.4414903022506"
+                    Point2="121.83332810137,10.4414903022506"
+                    Point3="121.83332810137,14.4414903022506" />
+                  <mssgle:LineSegment
+                    End="121.83332810137,18.285710822563" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="406.666655176216,328.530597606137">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="24.6666637857757,33.214281871611"
+              Start="0,0"
+              End="24.6666637857757,25.714281871611">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.7742336408914" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.7742336408914"
+                    Point2="0,19.7742336408914"
+                    Point3="4,19.7742336408914" />
+                  <mssgle:LineSegment
+                    End="20.6666637857757,19.7742336408914" />
+                  <mssgle:CubicBezierSegment
+                    Point1="20.6666637857757,19.7742336408914"
+                    Point2="24.6666637857757,19.7742336408914"
+                    Point3="24.6666637857757,23.7742336408914" />
+                  <mssgle:LineSegment
+                    End="24.6666637857757,25.714281871611" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="654.999978641669,328.530597606137">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-157.999993013011,33.214281871611"
+              Start="0,0"
+              End="-157.999993013011,25.714281871611">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.7742336408914" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.7742336408914"
+                    Point2="0,19.7742336408914"
+                    Point3="-4,19.7742336408914" />
+                  <mssgle:LineSegment
+                    End="-153.999993013011,19.7742336408914" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-153.999993013011,19.7742336408914"
+                    Point2="-157.999993013011,19.7742336408914"
+                    Point3="-157.999993013011,23.7742336408914" />
+                  <mssgle:LineSegment
+                    End="-157.999993013011,25.714281871611" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="431.333318961992,403.744879477748">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-58.6666621963185,38.642855577323"
+              Start="0,0"
+              End="-58.6666621963185,31.142855577323">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11.636702450456" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.636702450456"
+                    Point2="0,15.636702450456"
+                    Point3="-4,15.636702450456" />
+                  <mssgle:LineSegment
+                    End="-54.6666621963185,15.636702450456" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-54.6666621963185,15.636702450456"
+                    Point2="-58.6666621963185,15.636702450456"
+                    Point3="-58.6666621963185,19.636702450456" />
+                  <mssgle:LineSegment
+                    End="-58.6666621963185,31.142855577323" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="496.999985628658,403.744879477748">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="145.66666040818,40.214289177437"
+              Start="0,0"
+              End="145.66666040818,32.714289177437">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.2725778084885" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.2725778084885"
+                    Point2="0,16.2725778084885"
+                    Point3="4,16.2725778084885" />
+                  <mssgle:LineSegment
+                    End="141.66666040818,16.2725778084885" />
+                  <mssgle:CubicBezierSegment
+                    Point1="141.66666040818,16.2725778084885"
+                    Point2="145.66666040818,16.2725778084885"
+                    Point3="145.66666040818,20.2725778084885" />
+                  <mssgle:LineSegment
+                    End="145.66666040818,32.714289177437" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="370.999989867211,484.387735055071">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29.857139441432"
+              Start="0,0"
+              End="0,22.357139441432">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.357139441432" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 8]"
+          TopLeft="642.666646036838,485.959168655185">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-21.666666401758,35.499988377095"
+              Start="0,0"
+              End="-21.666666401758,27.999988377095">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.7499941885475" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.7499941885475"
+                    Point2="0,17.7499941885475"
+                    Point3="-4,17.7499941885475" />
+                  <mssgle:LineSegment
+                    End="-17.666666401758,17.7499941885475" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-17.666666401758,17.7499941885475"
+                    Point2="-21.666666401758,17.7499941885475"
+                    Point3="-21.666666401758,21.7499941885475" />
+                  <mssgle:LineSegment
+                    End="-21.666666401758,27.999988377095" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 9]"
+          TopLeft="369.333322968748,556.244874496503">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="89.9999944037865,40.214287849105"
+              Start="0,0"
+              End="89.9999944037865,32.714287849105">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.9022789443098" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19.9022789443098"
+                    Point2="0,23.9022789443098"
+                    Point3="4,23.9022789443098" />
+                  <mssgle:LineSegment
+                    End="85.9999944037865,23.9022789443098" />
+                  <mssgle:CubicBezierSegment
+                    Point1="85.9999944037865,23.9022789443098"
+                    Point2="89.9999944037865,23.9022789443098"
+                    Point3="89.9999944037865,27.9022789443098" />
+                  <mssgle:LineSegment
+                    End="89.9999944037865,32.714287849105" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 10]"
+          TopLeft="620.99997963508,563.45915703228">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-107.999995595879,33.000005313328"
+              Start="0,0"
+              End="-107.999995595879,25.500005313328">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.6143056199968" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.6143056199968"
+                    Point2="0,19.6143056199968"
+                    Point3="-4,19.6143056199968" />
+                  <mssgle:LineSegment
+                    End="-103.999995595879,19.6143056199968" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-103.999995595879,19.6143056199968"
+                    Point2="-107.999995595879,19.6143056199968"
+                    Point3="-107.999995595879,23.6143056199968" />
+                  <mssgle:LineSegment
+                    End="-107.999995595879,25.500005313328" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 11]"
+          TopLeft="459.333317372535,638.459162345608">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-87.6666608055436,41.42857569821"
+              Start="0,0"
+              End="-87.6666608055436,33.92857569821">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.804557082744" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.804557082744"
+                    Point2="0,16.804557082744"
+                    Point3="-4,16.804557082744" />
+                  <mssgle:LineSegment
+                    End="-83.6666608055436,16.804557082744" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-83.6666608055436,16.804557082744"
+                    Point2="-87.6666608055436,16.804557082744"
+                    Point3="-87.6666608055436,20.804557082744" />
+                  <mssgle:LineSegment
+                    End="-87.6666608055436,33.92857569821" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 12]"
+          TopLeft="512.999984039201,638.459162345608">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="117.833328896099,41.999999335834"
+              Start="0,0"
+              End="117.833328896099,34.499999335834">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.0363420518154" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.0363420518154"
+                    Point2="0,17.0363420518154"
+                    Point3="4,17.0363420518154" />
+                  <mssgle:LineSegment
+                    End="113.833328896099,17.0363420518154" />
+                  <mssgle:CubicBezierSegment
+                    Point1="113.833328896099,17.0363420518154"
+                    Point2="117.833328896099,17.0363420518154"
+                    Point3="117.833328896099,21.0363420518154" />
+                  <mssgle:LineSegment
+                    End="117.833328896099,34.499999335834" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 13]"
+          TopLeft="371.666656566991,721.887738043818">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="92.4999937083986,30.6428535848249"
+              Start="0,0"
+              End="92.4999937083986,23.1428535848249">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.1929392843063" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.1929392843063"
+                    Point2="0,18.1929392843063"
+                    Point3="4,18.1929392843063" />
+                  <mssgle:LineSegment
+                    End="88.4999937083986,18.1929392843063" />
+                  <mssgle:CubicBezierSegment
+                    Point1="88.4999937083986,18.1929392843063"
+                    Point2="92.4999937083986,18.1929392843063"
+                    Point3="92.4999937083986,22.1929392843063" />
+                  <mssgle:LineSegment
+                    End="92.4999937083986,23.1428535848249" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 14]"
+          TopLeft="630.8333129353,722.459161681442">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-118.999995993244,30.071429947201"
+              Start="0,0"
+              End="-118.999995993244,22.571429947201">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.8536799031219" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.8536799031219"
+                    Point2="0,17.8536799031219"
+                    Point3="-4,17.8536799031219" />
+                  <mssgle:LineSegment
+                    End="-114.999995993244,17.8536799031219" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-114.999995993244,17.8536799031219"
+                    Point2="-118.999995993244,17.8536799031219"
+                    Point3="-118.999995993244,21.8536799031219" />
+                  <mssgle:LineSegment
+                    End="-118.999995993244,22.571429947201" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

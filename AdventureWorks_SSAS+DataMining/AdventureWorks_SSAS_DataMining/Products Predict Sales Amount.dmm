@@ -1,0 +1,260 @@
+﻿<MiningStructure xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="d5273b89-1f16-4dfe-9579-857244d93bdc" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>Products Predict Sales Amount</ID>
+  <Name>Products Predict Sales Amount</Name>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:CaseTableName</Name>
+      <Value>dbo_Products Predict FactTable</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+      <Value>false</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+      <Value>100</Value>
+    </Annotation>
+  </Annotations>
+  <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+  <State>Unprocessed</State>
+  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="4f714306-4ee3-448d-805a-bcd6ad7ce684">
+    <DataSourceViewID>dsv_AW2021 DW_ProductsPredictMeasures</DataSourceViewID>
+  </Source>
+  <Columns>
+    <Column xsi:type="ScalarMiningStructureColumn" dwd:design-time-name="f4588a74-f9fc-43f3-9b43-48ef9bba4a89">
+      <ID>Class</ID>
+      <Name>Class</Name>
+      <Type>Text</Type>
+      <Content>Discrete</Content>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="a7d0d9df-4058-4b45-9c8d-bfafef4fd249">
+          <DataType>WChar</DataType>
+          <DataSize>2</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="f01a83df-df4c-4188-b104-8cb3725269c2">
+            <TableID>dbo_Products_x0020_Predict_x0020_FactTable</TableID>
+            <ColumnID>Class</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+    </Column>
+    <Column xsi:type="ScalarMiningStructureColumn" dwd:design-time-name="f260c52c-534c-400e-a670-9a4a32f33d7b">
+      <ID>Color</ID>
+      <Name>Color</Name>
+      <Type>Text</Type>
+      <Content>Discrete</Content>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="90705346-9c14-4278-8ebe-fe4081ca7e99">
+          <DataType>WChar</DataType>
+          <DataSize>15</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="e7594ce8-867b-43e1-bd6e-539e68f5b498">
+            <TableID>dbo_Products_x0020_Predict_x0020_FactTable</TableID>
+            <ColumnID>Color</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+    </Column>
+    <Column xsi:type="ScalarMiningStructureColumn" dwd:design-time-name="f851fa46-f0bd-41f6-9660-e6c20c09a074">
+      <ID>Product Category Name</ID>
+      <Name>Product Category Name</Name>
+      <Type>Text</Type>
+      <Content>Discrete</Content>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="fc6a7dff-2815-4f78-9241-d887baa4bc68">
+          <DataType>WChar</DataType>
+          <DataSize>50</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="ec65e9b2-c52c-4fc3-834f-0446ea455f1c">
+            <TableID>dbo_Products_x0020_Predict_x0020_FactTable</TableID>
+            <ColumnID>ProductCategoryName</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+    </Column>
+    <Column xsi:type="ScalarMiningStructureColumn" dwd:design-time-name="ad5a9b75-02c5-4a82-a485-a5ed5a415c95">
+      <ID>Product Key</ID>
+      <Name>Product Key</Name>
+      <IsKey>true</IsKey>
+      <Type>Long</Type>
+      <Content>Key</Content>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="b0465d9f-b0a7-4b7d-bc08-cb0a49eafc73">
+          <DataType>Integer</DataType>
+          <DataSize>-1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="3aff81a3-82c6-450d-ac36-607e4927a991">
+            <TableID>dbo_Products_x0020_Predict_x0020_FactTable</TableID>
+            <ColumnID>ProductKey</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+    </Column>
+    <Column xsi:type="ScalarMiningStructureColumn" dwd:design-time-name="c1dd0650-7439-4a75-9df4-7ea291b9b084">
+      <ID>Sales Amount</ID>
+      <Name>Sales Amount</Name>
+      <Type>Double</Type>
+      <Content>Continuous</Content>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="ac48958a-91ed-4098-9bd2-8a582cddf998">
+          <DataType>Double</DataType>
+          <DataSize>-1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="c1f827a2-bdb9-4ddb-b692-d2b3a7652995">
+            <TableID>dbo_Products_x0020_Predict_x0020_FactTable</TableID>
+            <ColumnID>SalesAmount</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+    </Column>
+    <Column xsi:type="ScalarMiningStructureColumn" dwd:design-time-name="e9dfb15f-c025-4936-a2b2-08f8318ede09">
+      <ID>Size</ID>
+      <Name>Size</Name>
+      <Type>Text</Type>
+      <Content>Discrete</Content>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="97c80f22-789d-4298-9cc4-db665b7bad05">
+          <DataType>WChar</DataType>
+          <DataSize>5</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="c01a193e-adf5-4fe3-804b-6ad332fe4631">
+            <TableID>dbo_Products_x0020_Predict_x0020_FactTable</TableID>
+            <ColumnID>Size</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+    </Column>
+    <Column xsi:type="ScalarMiningStructureColumn" dwd:design-time-name="0f542ded-9558-4fea-acdc-2fde1635e205">
+      <ID>Standard Cost</ID>
+      <Name>Standard Cost</Name>
+      <Type>Double</Type>
+      <Content>Continuous</Content>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="8988cad6-d5ef-44aa-a0e7-b601729f9579">
+          <DataType>Double</DataType>
+          <DataSize>-1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="857d0653-9bc0-46c3-be86-1945783e83ea">
+            <TableID>dbo_Products_x0020_Predict_x0020_FactTable</TableID>
+            <ColumnID>StandardCost</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+    </Column>
+    <Column xsi:type="ScalarMiningStructureColumn" dwd:design-time-name="07d3c34f-1e35-4102-a688-07a1febc7387">
+      <ID>Style</ID>
+      <Name>Style</Name>
+      <Type>Text</Type>
+      <Content>Discrete</Content>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="e27820e8-d968-4a38-aee8-fda41cf2e784">
+          <DataType>WChar</DataType>
+          <DataSize>2</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="b5ded429-ac9b-4ace-a93c-18f88d0fa853">
+            <TableID>dbo_Products_x0020_Predict_x0020_FactTable</TableID>
+            <ColumnID>Style</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+    </Column>
+    <Column xsi:type="ScalarMiningStructureColumn" dwd:design-time-name="08ecf5e8-bcdf-4675-b53e-328bdd3867d5">
+      <ID>Weight</ID>
+      <Name>Weight</Name>
+      <Type>Double</Type>
+      <Content>Continuous</Content>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="9bdfbd1e-dbec-4942-bd57-9d73d733c10a">
+          <DataType>Double</DataType>
+          <DataSize>-1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="c33900ad-8490-448a-ac96-6bf40280ff19">
+            <TableID>dbo_Products_x0020_Predict_x0020_FactTable</TableID>
+            <ColumnID>Weight</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+    </Column>
+  </Columns>
+  <MiningModels>
+    <MiningModel dwd:design-time-name="cf391add-a090-4dad-89f9-05dfe5bfe24c">
+      <ID>Products Predict Fact Table NN</ID>
+      <Name>Products Predict Fact Table NN</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+      <State>Unprocessed</State>
+      <Algorithm>Microsoft_Neural_Network</Algorithm>
+      <Columns>
+        <Column dwd:design-time-name="52047dd4-3679-4d89-a719-6a03551bdc72">
+          <ID>Class</ID>
+          <Name>Class</Name>
+          <SourceColumnID>Class</SourceColumnID>
+        </Column>
+        <Column dwd:design-time-name="7e62a9c0-2bb7-4e9d-a0ad-5d3d8f2e8768">
+          <ID>Color</ID>
+          <Name>Color</Name>
+          <SourceColumnID>Color</SourceColumnID>
+        </Column>
+        <Column dwd:design-time-name="240a2cd5-3500-4255-b44c-590690e809a3">
+          <ID>Product Category Name</ID>
+          <Name>Product Category Name</Name>
+          <SourceColumnID>Product Category Name</SourceColumnID>
+        </Column>
+        <Column dwd:design-time-name="c4d9904b-5d01-4130-9de9-75aa9812c3c5">
+          <ID>Product Key</ID>
+          <Name>Product Key</Name>
+          <SourceColumnID>Product Key</SourceColumnID>
+          <Usage>Key</Usage>
+        </Column>
+        <Column dwd:design-time-name="226b9796-930b-49b6-987f-95ab30b2d851">
+          <ID>Sales Amount</ID>
+          <Name>Sales Amount</Name>
+          <SourceColumnID>Sales Amount</SourceColumnID>
+          <Usage>PredictOnly</Usage>
+        </Column>
+        <Column dwd:design-time-name="d2f5ab44-2673-43cf-87a3-5e362501c467">
+          <ID>Size</ID>
+          <Name>Size</Name>
+          <SourceColumnID>Size</SourceColumnID>
+        </Column>
+        <Column dwd:design-time-name="b0d03694-22ad-4da8-aaa0-7b656d6d8f3f">
+          <ID>Standard Cost</ID>
+          <Name>Standard Cost</Name>
+          <SourceColumnID>Standard Cost</SourceColumnID>
+        </Column>
+        <Column dwd:design-time-name="ccaabeb2-3666-4b1b-9ec1-e5ce9e4646e0">
+          <ID>Style</ID>
+          <Name>Style</Name>
+          <SourceColumnID>Style</SourceColumnID>
+        </Column>
+        <Column dwd:design-time-name="5e3511e7-5fb6-445f-b9e4-1054e0b0b1c8">
+          <ID>Weight</ID>
+          <Name>Weight</Name>
+          <SourceColumnID>Weight</SourceColumnID>
+        </Column>
+      </Columns>
+    </MiningModel>
+  </MiningModels>
+  <ddl100_100:HoldoutMaxPercent>30</ddl100_100:HoldoutMaxPercent>
+</MiningStructure>

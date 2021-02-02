@@ -1,0 +1,176 @@
+﻿<MiningStructure xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="b694a99c-1425-49c1-af5a-0e68bce1f17e" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>Reseller Predict Sales Amount</ID>
+  <Name>Reseller Predict Sales Amount</Name>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:CaseTableName</Name>
+      <Value>dbo_Reseller Predict FactTable</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+      <Value>false</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+      <Value>100</Value>
+    </Annotation>
+  </Annotations>
+  <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+  <State>Unprocessed</State>
+  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="4a3c3838-dfa6-4ecf-a11d-53eabea8711d">
+    <DataSourceViewID>dsv_AW2021 DW_ResellerPredictMeasures</DataSourceViewID>
+  </Source>
+  <Columns>
+    <Column xsi:type="ScalarMiningStructureColumn" dwd:design-time-name="e943d4aa-bc51-4d4a-8a04-3ba972c152a0">
+      <ID>Reseller Key</ID>
+      <Name>Reseller Key</Name>
+      <IsKey>true</IsKey>
+      <Type>Long</Type>
+      <Content>Key</Content>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="1f368c20-6bc8-4099-b9c2-8876ed15defc">
+          <DataType>Integer</DataType>
+          <DataSize>-1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="aa3c6861-0d7a-4c29-ba78-a76795c31e2b">
+            <TableID>dbo_Reseller_x0020_Predict_x0020_FactTable</TableID>
+            <ColumnID>ResellerKey</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+    </Column>
+    <Column xsi:type="ScalarMiningStructureColumn" dwd:design-time-name="372698ca-7e7f-43c6-b470-943787aa0bf2">
+      <ID>Sales Amount</ID>
+      <Name>Sales Amount</Name>
+      <Type>Double</Type>
+      <Content>Continuous</Content>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="4b6f0019-8c74-4384-9511-25e8f86e1787">
+          <DataType>Double</DataType>
+          <DataSize>-1</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="d2ec9ea0-f671-4584-82b2-d0088ca550c9">
+            <TableID>dbo_Reseller_x0020_Predict_x0020_FactTable</TableID>
+            <ColumnID>SalesAmount</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+    </Column>
+    <Column xsi:type="ScalarMiningStructureColumn" dwd:design-time-name="985ef4d0-5683-4217-a594-622f65934d39">
+      <ID>Sales Country</ID>
+      <Name>Sales Country</Name>
+      <Type>Text</Type>
+      <Content>Discrete</Content>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="0e7f82b5-3f2f-4814-90f4-9064e9cf61a7">
+          <DataType>WChar</DataType>
+          <DataSize>50</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="e31a7a92-9f12-4ffd-9f72-9b8c35b2857e">
+            <TableID>dbo_Reseller_x0020_Predict_x0020_FactTable</TableID>
+            <ColumnID>SalesCountry</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+    </Column>
+    <Column xsi:type="ScalarMiningStructureColumn" dwd:design-time-name="9d9d4870-0a31-4825-b698-784508642b30">
+      <ID>Sales Group</ID>
+      <Name>Sales Group</Name>
+      <Type>Text</Type>
+      <Content>Discrete</Content>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="70d8adc8-51ea-4edb-9a29-ea57a6c97dce">
+          <DataType>WChar</DataType>
+          <DataSize>50</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="7275e390-65d6-4beb-b8fe-4b07ef4635ff">
+            <TableID>dbo_Reseller_x0020_Predict_x0020_FactTable</TableID>
+            <ColumnID>SalesGroup</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+    </Column>
+    <Column xsi:type="ScalarMiningStructureColumn" dwd:design-time-name="a222502c-7363-4d80-b61a-8781f3230fb7">
+      <ID>Sales Region</ID>
+      <Name>Sales Region</Name>
+      <Type>Text</Type>
+      <Content>Discrete</Content>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="3994c8b6-966e-4da6-a79d-069454038ba1">
+          <DataType>WChar</DataType>
+          <DataSize>30</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="4683ee78-501c-4702-80e4-b0a4a2b63213">
+            <TableID>dbo_Reseller_x0020_Predict_x0020_FactTable</TableID>
+            <ColumnID>SalesRegion</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+    </Column>
+  </Columns>
+  <MiningModels>
+    <MiningModel dwd:design-time-name="b4fb87e0-12dc-45c9-93d5-b3db735ec733">
+      <ID>Reseller Predict Fact Table NN</ID>
+      <Name>Reseller Predict Fact Table NN</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+      <State>Unprocessed</State>
+      <Algorithm>Microsoft_Neural_Network</Algorithm>
+      <Columns>
+        <Column dwd:design-time-name="4cc47d6b-1309-4a88-88ab-166c7f99779b">
+          <ID>Reseller Key</ID>
+          <Name>Reseller Key</Name>
+          <SourceColumnID>Reseller Key</SourceColumnID>
+          <Usage>Key</Usage>
+        </Column>
+        <Column dwd:design-time-name="6c87d519-9d91-4b61-842a-862ef69500d7">
+          <ID>Sales Amount</ID>
+          <Name>Sales Amount</Name>
+          <SourceColumnID>Sales Amount</SourceColumnID>
+          <Usage>PredictOnly</Usage>
+        </Column>
+        <Column dwd:design-time-name="b21d8184-1de1-4089-ae88-a529d6bff23b">
+          <ID>Sales Country</ID>
+          <Name>Sales Country</Name>
+          <SourceColumnID>Sales Country</SourceColumnID>
+        </Column>
+        <Column dwd:design-time-name="3c57a79c-cf8d-491b-9368-504c1b29bd07">
+          <ID>Sales Group</ID>
+          <Name>Sales Group</Name>
+          <SourceColumnID>Sales Group</SourceColumnID>
+        </Column>
+        <Column dwd:design-time-name="5b4a25a2-0bd7-4d8a-a0ce-1a37eca87d17">
+          <ID>Sales Region</ID>
+          <Name>Sales Region</Name>
+          <SourceColumnID>Sales Region</SourceColumnID>
+        </Column>
+      </Columns>
+    </MiningModel>
+  </MiningModels>
+  <ddl100_100:HoldoutMaxPercent>30</ddl100_100:HoldoutMaxPercent>
+</MiningStructure>

@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30002.166
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{D2ABAB84-BF74-430A-B69E-9DC6D40DDA17}") = "AdventureWorks_SSAS_DataMining", "AdventureWorks_SSAS_DataMining\AdventureWorks_SSAS_DataMining.dwproj", "{3836CE7B-3E02-43A6-A1AB-BDCA00A028B9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3836CE7B-3E02-43A6-A1AB-BDCA00A028B9}.Development|Default.ActiveCfg = Development
+		{3836CE7B-3E02-43A6-A1AB-BDCA00A028B9}.Development|Default.Build.0 = Development
+		{3836CE7B-3E02-43A6-A1AB-BDCA00A028B9}.Development|Default.Deploy.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EDFB70BE-8EB9-46E0-B02C-FD63EADAF56C}
+	EndGlobalSection
+EndGlobal
